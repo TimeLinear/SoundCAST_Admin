@@ -1,4 +1,4 @@
-package com.kh.soundcastadmin.statistic.model.dao;
+package com.kh.soundcastadmin.statistic.model.vo;
 
 import java.sql.Date;
 

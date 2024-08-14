@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auth">
+
+	<resultMap id="userMap" type="user">
+		<id column="USER_NO" property="userNo"/>
+		
+		<collection property="authorities"
+					javaType="list"
+					ofType="simpleGrantedAuthority"
+					select="selectAuthorities"
+					column="USER_NO"
+		/>
+	</resultMap>
+	
+	<resultMap id="authorityMap" type="simpleGrantedAuthority">
+		<constructor>
+			<arg column="authority" javaType="string"/>
+		</constructor>
+	</resultMap>
+
+	<select id="loadUserByUsername" resultMap="userMap">
+		SELECT
+			*
+		FROM MEMBER
+		JOIN MEMBER_SOCIAL USING(USER_NO)
+		WHERE
+			SOCIAL_ID = #{socialId}
+		  AND SOCIAL_TYPE = #{socialType}
+	</select>
+	
+	<select id="selectAuthorities" resultMap="authorityMap">
+		SELECT
+			*
+		FROM AUTHORITY
+		WHERE USER_NO = #{userNo}
+	</select>
+	<!-- 이런 경우 id랑 type 묶어서 pk하면 좋음 -->
+	
+	<insert id="insertUser" useGeneratedKeys="true">
+		
+		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+			SELECT SEQ_UNO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO MEMBER
+		VALUES(
+			#{userNo},
+			#{nickName},
+			DEFAULT,
+			DEFAULT,
+			#{profile}
+		)
+	</insert>
+	
+	<insert id="insertUserSocial">
+		INSERT INTO MEMBER_SOCIAL
+		VALUES(
+			#{socialId},
+			#{userNo},
+			#{socialType}
+		)
+	</insert>
+	
+	<insert id="insertAuthority">
+		INSERT INTO AUTHORITY
+		VALUES(
+			#{userNo},
+			'ROLE_USER'
+		)
+	</insert>
+	<!-- 권한명 정할 시 ROLE_~~ 식으로 정해야함 -->
+	
+	
+	
+	
+	
+</mapper>
