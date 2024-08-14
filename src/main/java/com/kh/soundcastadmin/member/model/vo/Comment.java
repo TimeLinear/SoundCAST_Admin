@@ -1,4 +1,4 @@
-package com.kh.soundcastadmin.member.model.dao;
+package com.kh.soundcastadmin.member.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
