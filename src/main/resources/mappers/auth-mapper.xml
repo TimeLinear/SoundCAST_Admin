@@ -3,19 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="auth">
-
-	<resultMap id="userMap" type="user">
-		<id column="USER_NO" property="userNo"/>
-		
-		<collection property="authorities"
-					javaType="list"
-					ofType="simpleGrantedAuthority"
-					select="selectAuthorities"
-					column="USER_NO"
-		/>
-	</resultMap>
 	
-	<resultMap id="authorityMap" type="simpleGrantedAuthority">
+	<!--<resultMap id="authorityMap" type="simpleGrantedAuthority">
 		<constructor>
 			<arg column="authority" javaType="string"/>
 		</constructor>
@@ -37,7 +26,7 @@
 		FROM AUTHORITY
 		WHERE USER_NO = #{userNo}
 	</select>
-	<!-- 이런 경우 id랑 type 묶어서 pk하면 좋음 -->
+	 이런 경우 id랑 type 묶어서 pk하면 좋음 
 	
 	<insert id="insertUser" useGeneratedKeys="true">
 		
@@ -71,8 +60,8 @@
 			'ROLE_USER'
 		)
 	</insert>
-	<!-- 권한명 정할 시 ROLE_~~ 식으로 정해야함 -->
-	
+	 권한명 정할 시 ROLE_~~ 식으로 정해야함 
+	-->
 	
 	
 	

@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Member {
 	
 	private int memberNo; // 회원 번호
-	private int memberProfileImgNo; // 프로필 이미지 번호
 	private int memberBannerNo; // 마이페이지 배너 이미지 번호
 	private int memberSocialCategory; // 로그인한 소셜명(0:구글, 1:네이버, 2:카카오)
 	private int memberGradeNo; // 회원 등급
