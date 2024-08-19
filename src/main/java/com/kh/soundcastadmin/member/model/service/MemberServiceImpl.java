@@ -1,6 +1,7 @@
 package com.kh.soundcastadmin.member.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	public List<MemberExt> selectMembers() {
 		return memberDao.selectMembers();
+	}
+
+	@Override
+	public List<MemberExt> searchMembers(Map<String, Object> param) {
+		return memberDao.searchMembers(param);
 	}
 	
 }

@@ -1,10 +1,13 @@
 package com.kh.soundcastadmin.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +34,24 @@ public class MemberController {
 		log.debug("list {}", list);
 		
 		//response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:3000");
+		
+		return list;
+	}
+	
+	@CrossOrigin(origins = {"*"})
+	@GetMapping("/searchMembers/type/{type}/searchTerm/{searchTerm}")
+	public List<MemberExt> searchMembers(
+			@PathVariable String type ,
+			@PathVariable String searchTerm
+			){
+		log.debug("type = {}, searchTerm = {}", type, searchTerm);
+		Map<String, Object> param = new HashMap<>();
+		param.put("type", type);
+		param.put("searchTerm", searchTerm);
+		
+		List<MemberExt> list = memberService.searchMembers(param);
+		
+		log.debug("list {}", list);
 		
 		return list;
 	}
