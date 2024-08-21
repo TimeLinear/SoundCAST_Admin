@@ -118,4 +118,7 @@ build/
 hs_err_pid*
 replay_pid*
 
+# 직접 수정
+/target/**
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java
