@@ -120,5 +120,6 @@ replay_pid*
 
 # 직접 수정
 /target/**
+/target/classes
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java
