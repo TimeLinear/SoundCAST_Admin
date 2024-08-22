@@ -24,5 +24,10 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberExt> searchMembers(Map<String, Object> param) {
 		return memberDao.searchMembers(param);
 	}
+
+	@Override
+	public int deleteMembers(List<Long> deleteList) {
+		return memberDao.deleteMembers(deleteList);
+	}
 	
 }

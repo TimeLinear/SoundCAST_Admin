@@ -11,4 +11,6 @@ public interface MemberService {
 
 	List<MemberExt> searchMembers(Map<String, Object> param);
 
+	int deleteMembers(List<Long> deleteList);
+
 }

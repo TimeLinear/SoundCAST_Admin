@@ -26,4 +26,9 @@ public class MemberDaoImpl implements MemberDao{
 		return session.selectList("member.searchMembers", param);
 	}
 
+	@Override
+	public int deleteMembers(List<Long> deleteList) {
+		return session.update("member.deleteMembers", deleteList);
+	}
+
 }
